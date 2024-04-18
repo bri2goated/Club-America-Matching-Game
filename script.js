@@ -5,6 +5,7 @@ let buttonShow = document.querySelector(".show");
 let buttonDouble = document.querySelector(".double");
 let buttonShuffle = document.querySelector(".shuffle");
 let buttonFlip = document.querySelector(".flip");
+let clickedIds = [];
 // Array containing image URLs
 let url = "https://cdn.glitch.global/63526844-33ee-4f88-8cca-81d00953972f/";
 let cards = [
@@ -20,6 +21,7 @@ let cards = [
 
 ];
 
+
 // Button to Show Deck
 buttonShow.onclick = function() {
     // Log message
@@ -27,44 +29,44 @@ buttonShow.onclick = function() {
     // For of loop
     for (let card of cards) {
         game.insertAdjacentHTML("beforeend",
-            "<div style='background-image: url(" +
+            "<div style='background-image: url(" + url +
             card +
             ")' class='card'>");
+        let audio = document.querySelector(".audio");
+        audio.play();
     }
 };
 
 // Button to Double Deck
 buttonDouble.onclick = function() {
-    console.log("Deck has" + cards.length + "cards.");
-
+    console.log("Deck has" + cards.length + " cards.");
     for (let card of cards) {
         if (cards.length !== 16) {
             cards.push(card);
             game.insertAdjacentHTML("beforeend",
-                "<div style='background-image: url(" +
-                card +
-                ")' class='card'>");
+                "<div style='background-image: url(" + url + card + ")' class='card'>"
+
+            );
 
         }
     }
+
+    let audio = document.querySelector(".audio");
+    audio.play();
 };
-
-
-buttonDouble.style.color = "silver";
-console.log("Now the deck has" + cards.length + "cards.");
 
 // Button to Shuffle Cards
 buttonShuffle.onclick = function() {
     shuffle(cards);
-    console.log("Im shuffling the cards");
     game.innerHTML = "";
-    let i = 0;
+    console.log("Im shuffling the cards");
+    let count = 0;
+
     for (let card of cards) {
         game.insertAdjacentHTML("beforeend",
-            "<div style='background-image: url(" +
-            card +
-            ")' id= " + i + " class='card'>");
-        i = i + 1;
+            "<div style='background-image: url(" + url + card + ")' id='" + count + "' class='card'>"
+        );
+        count = count + 1;
     }
 };
 
@@ -80,23 +82,41 @@ function shuffle(array) {
         [array[currentIndex], array[randomIndex]] = [
             array[randomIndex], array[currentIndex]
         ];
+        let audio = document.querySelector(".audio");
+        audio.play();
     }
+
     return array;
+
+
 }
 
+game.innerHTML = "";
 // Button to Flip All Cards
 buttonFlip.onclick = function() {
-    let i = 0;
-    for (card of cards) {
-        document.getElementById(i).style.backgroundImage = "";
-        i = i + 1;
+    let count = 0;
+    for (let card of cards) {
+        document.getElementById(count).style.backgroundImage = "";
+        count = count + 1;
+        console.log(count);
+
+
+        let audio = document.querySelector(".audio");
+        audio.play();
+
+
     }
+
+
+
 };
+
 
 // Here we need a function for clicking on individual cards.
 // (It won't work until we finish writing it.)
 $(document).click(function(event) {
-    //Get the id property of the clicked thing.
+    // Get the id property of the clicked thing.
+
     let clickedId = event.target.id;
     console.log(clickedId);
     if (clickedId !== "") {
@@ -121,6 +141,10 @@ $(document).click(function(event) {
             clickedIds = [];
             clickedIds.push(clickedId);
             console.log(clickedIds);
+
         }
+
     }
+
+
 });
