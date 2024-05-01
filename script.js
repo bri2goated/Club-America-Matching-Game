@@ -6,18 +6,21 @@ let buttonDouble = document.querySelector(".double");
 let buttonShuffle = document.querySelector(".shuffle");
 let buttonFlip = document.querySelector(".flip");
 let clickedIds = [];
+let counterdiv = document.querySelector(".counter");
+ let counter = 0;
+let counterText = document.querySelector("span");
+   
 // Array containing image URLs
 let url = "https://cdn.glitch.global/63526844-33ee-4f88-8cca-81d00953972f/";
 let cards = [
-    "https://cdn.glitch.global/63526844-33ee-4f88-8cca-81d00953972f/diego.jpeg?v=1710258756059",
-    "https://cdn.glitch.global/63526844-33ee-4f88-8cca-81d00953972f/Fidalg%20copy.jpg?v=1710258777163",
-    "https://cdn.glitch.global/63526844-33ee-4f88-8cca-81d00953972f/H.Martin%20copy.jpg?v=1710258789196",
-    "https://cdn.glitch.global/63526844-33ee-4f88-8cca-81d00953972f/J.Quinones%20copy.jpg?v=1710258798229",
-    "https://cdn.glitch.global/63526844-33ee-4f88-8cca-81d00953972f/Leo.Suarez%20copy.jpg?v=1710258819571",
-    "https://cdn.glitch.global/63526844-33ee-4f88-8cca-81d00953972f/k.alvarez.jpg?v=1710258828690",
-    "https://cdn.glitch.global/63526844-33ee-4f88-8cca-81d00953972f/CA2.jpg?v=1710258967284",
-    "https://cdn.glitch.global/63526844-33ee-4f88-8cca-81d00953972f/pelones.jpeg?v=1710259110068"
-
+    "diego.jpeg?v=1710258756059",
+    "Fidalg%20copy.jpg?v=1710258777163",
+    "H.Martin%20copy.jpg?v=1710258789196",
+    "J.Quinones%20copy.jpg?v=1710258798229",
+    "Leo.Suarez%20copy.jpg?v=1710258819571",
+    "k.alvarez.jpg?v=1710258828690",
+    "CA2.jpg?v=1710258967284",
+    "pelones.jpeg?v=1710259110068"
 
 ];
 
@@ -25,6 +28,8 @@ let cards = [
 // Button to Show Deck
 buttonShow.onclick = function() {
     // Log message
+   counter = counter + 1; 
+  counterText.innerHTML();
     console.log("Showing the deck...");
     // For of loop
     for (let card of cards) {
@@ -61,12 +66,12 @@ buttonShuffle.onclick = function() {
     game.innerHTML = "";
     console.log("Im shuffling the cards");
     let count = 0;
-
-    for (let card of cards) {
+	  for (let card of cards) {
         game.insertAdjacentHTML("beforeend",
             "<div style='background-image: url(" + url + card + ")' id='" + count + "' class='card'>"
         );
         count = count + 1;
+        
     }
 };
 
