@@ -29,7 +29,7 @@ let cards = [
 buttonShow.onclick = function() {
     // Log message
    counter = counter + 1; 
-  counterText.innerHTML();
+
     console.log("Showing the deck...");
     // For of loop
     for (let card of cards) {
